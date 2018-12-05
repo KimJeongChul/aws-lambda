@@ -7,6 +7,7 @@ development_install () {
 }
 
 create_virtualenv () {
+	cd ~
 	virtualenv --python=python2.7 pillow
 	source ~/pillow/bin/activate
 }
