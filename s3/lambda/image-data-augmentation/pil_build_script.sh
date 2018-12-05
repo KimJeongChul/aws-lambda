@@ -17,7 +17,8 @@ pip_install () {
 }
 
 zip_library() {
-	zip -r9 ~/Pillow.zip pillow/lib64/python2.7/dist-packages/*
+	cd ~/pillow/lib64/python2.7/dist-packages/
+	zip -r9 ~/Pillow.zip .
 }
 
 main () {

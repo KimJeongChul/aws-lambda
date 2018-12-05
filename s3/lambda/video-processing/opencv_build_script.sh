@@ -16,7 +16,8 @@ pip_install () {
 }
 
 zip_library () {
-	zip -r9 ~/OpenCV.zip opencv/lib64/python2.7/dist-packages/*
+	cd opencv/lib64/python2.7/dist-packages
+	zip -r9 ~/OpenCV.zip .
 }
 
 main () {
