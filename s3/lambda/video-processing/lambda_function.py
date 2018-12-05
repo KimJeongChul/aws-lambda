@@ -9,21 +9,28 @@ TMP = "/tmp/"
 FILE_PATH_INDEX = 0
 
 def video_processing(file_name, video_path):
-	video = cv2.VideoCapture(video_path)
-	idx = 0
-	while(video.isOpened()):
-		ret, frame = video.read()
-		width = frame.get(3)
-    	height = frame.get(4)
+    result_file_path = []
 
-		if ret < 0:
-			break
+    video = cv2.VideoCapture(video_path)
+    idx = 0
 
-		frame = cv2.resize(frame, (720, 480))
-		result_path = video_path.split(".")[FILE_PATH_INDEX]+idx+".jpg"
-		cv2.imwrite(result_path, frame)
+    while(video.isOpened()):
+        ret, frame = video.read()
+        width = frame.get(3)
+        height = frame.get(4)
 
-		idx += 1
+        if ret < 0:
+            break
+
+        frame = cv2.resize(frame, (720, 480))
+        result_path = video_path.split(".")[FILE_PATH_INDEX]+idx+".jpg"
+        result_file_path.append(result_path)
+
+        cv2.imwrite(result_path, frame)
+
+        idx += 1
+
+    return result_file_path
 
 def lambda_handler(event, context):
     for record in event['Records']:
