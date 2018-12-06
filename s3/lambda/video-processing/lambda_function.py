@@ -55,4 +55,4 @@ def lambda_handler(event, context):
         for upload_path in result_path:
             s3_client.upload_file(upload_path, 'result-video-processing', upload_path.split("/")[FILE_NAME_INDEX])
 
-        print "S3 Upload Doen ..."
+        print "S3 Upload Done ..."
