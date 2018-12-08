@@ -13,13 +13,6 @@ def augmentation_image(file_name, image_path):
     result_file_path = []
 
     with Image.open(image_path) as image:
-        result_path = "flip-top-right-"+file_name
-        image =  image.transpose(Image.FLIP_LEFT_RIGHT)
-        result_path = TMP+result_path
-        image.save(result_path)
-        result_file_path.append(result_path)
-
-    with Image.open(image_path) as image:
         tmp = image
 
         result_path = "flip-left-right-"+file_name
@@ -112,6 +105,8 @@ def lambda_handler(event, context):
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
+        print "bucket name : " + str(bucket)
+        print "key : " + str(key)
         download_path = '/tmp/{}{}'.format(uuid.uuid4(), key)
 
         s3_client.download_file(bucket, key, download_path)
